@@ -119,15 +119,13 @@ n_{235} &= \omega \frac{m_u}{m_{UO_2}} \frac{N_{av}}{235} \\
 
 If we \textbf{assume that $\frac{3}{4}$ of the fissions occur in $U_{235}$}, then the total fissile atoms per gram of fuel is $1.05 \times 10^{21}$. 
 
-We can now determine the required mass of Uranium to produce a certain amount of energy. The core's power is related to the fission rate by a factor of 200 MeV per fission. We will \textbf{assume a core power of 1.75 GWth} for this analysis. This value roughly corresponds to 60 MWe for typical values of efficiency, which is close to the power output of the reactors we seek to imitate. The fission rate in our reactor is then $1.75 \times 10^9 \frac{Joules}{sec} \times \frac{1 MeV}{1.6 \times 10^{-13} Joules} \times \frac{1 Fission}{200 MeV} = 5.5 \times 10^{19} \frac{fissions}{second}$.
+We can now determine the required mass of Uranium to produce a certain amount of energy. The core's power is related to the fission rate by a factor of 200 MeV per fission. We will \textbf{assume a core power of .175 GWth} for this analysis. This value roughly corresponds to 50 MWe for typical values of efficiency, which is close to the power output of the reactors we seek to imitate. The fission rate in our reactor is then $1.75 \times 10^8 \frac{Joules}{sec} \times \frac{1 MeV}{1.6 \times 10^{-13} Joules} \times \frac{1 Fission}{200 MeV} = 5.5 \times 10^{18} \frac{fissions}{second}$. Now consider a \textbf{2 year refueling cycle}, which requires $5.5 \times 10^{18} \frac{fissions}{second} \times \frac{6.3 \times 10^7 s}{2 years} = 3.5 \times 10^{26} \frac{fissions}{cycle}$.
 
-In an \textbf{assumed 2-year refueling cycle} we would then need $5.5 \times 10^{19} \frac{fissions}{second} \times \frac{3.15 \times 10^7 s}{y} = 1.723 \times 10^{27}$ fissile atoms. 
+Returning to our value of fissile atoms per gram of $UO_2$, we can find the mass of Uranium required to power our core for two years. Recall that we anticipate $1.05 \times 10^{21}$ fissile nuclei per gram of fuel. The mass of fuel needed is then $\frac{3.5 \times 10 ^{26}}{1.05 \times 10^{21}} = 2.90 \times 10^{5} g = 290 kg$. However, we do not expect to burn every fissile isotope, \textbf{so this value should be adjusted by a factor of 1.7}, so that our first estimate of the mass of fuel is 493 kg. 
 
-Returning to our value of fissile atoms per gram of $UO_2$, we can find the mass of Uranium required to power our core for two years. This number is $5.5 \times 10^{19} \frac{fissions}{second} \times \frac{6.3 \times 10^7 s}{2 years} = 3.5 \times 10^{27} \frac{fissions}{cycle}$, which can be used to find the mass of fuel, and ultimately the volume of the reactor. Recall that we anticipate $1.05 \times 10^{21}$ fissile nuclei per gram of fuel. The mass of fuel needed is then $\frac{3.05 \times 10 ^{27}}{1.05 \times 10^{21}} = 2.90 \times 10^{6} g = 2900 kg$. However, we do not expect to burn every fissile isotope, \textbf{so this value should be adjusted by a factor of 1.7}, so that our first estimate of the mass of fuel is 4930 kg. 
+The density of $UO_2$ is $10970 \frac{kg}{m^3}$. The Volume of this much fuel is therefore $V = \frac{493 kg}{10970 \frac{kg}{m^3}} =  0.45 m ^ 3 $
 
-The density of $UO_2$ is $10970 \frac{kg}{m^3}$. The Volume of this much fuel is therefore $V = \frac{4930 kg}{10970 \frac{kg}{m^3}} =  4.50 m ^ 3 $
-
-\textbf{We will assume that the volume of our cylindrical core is equal to the volume of a cylinder of the same radius, which is to say $H = \frac{4}{3} \pi R$}. Under this assumption, the radius of our core is $(\frac{3}{4} \pi V) ^ {1/3} = 2.20 meters,$ giving a height of $2.93 meters$. This first estimate of the height (which will most likely be shorter than the final value) will be very useful in the thermal analysis.   
+\textbf{We will assume that the volume of our cylindrical core is equal to the volume of a cylinder of the same radius, which is to say $H = \frac{4}{3} R$}. Under this assumption, the radius of our core is $(\frac{3}{4} \pi V) ^ {1/3} = 1.07 meters,$ giving a height of $1.43 meters$. This first estimate of the height (which will most likely be shorter than the final value) will be very useful in the thermal analysis.   
 \subsubsection{Thermal analysis}
 Let us begin by estimating the mass flow rate required to remove the fission heat at steady state. With a simple energy balance, it becomes apparent that heat flux is related to the heat capacity and mass flow rate of the coolant and the temperature change across the length of the channel as follows:
 
@@ -136,7 +134,7 @@ q'' &= \dot{m} c_p \Delta T \\
 \dot{m} &= \frac{q''}{c_p \Delta T}
 \end{align}
 
-We can estimate q'' by dividing the thermal power by the surface area of the fuel, which gives us $q'' = \frac{1.5 \times 10^9}{2 \pi N 2.93 \times 10 ^{-2}}$
+We can estimate q'' by dividing the thermal power by the surface area of the fuel, which gives us $q'' = \frac{1.5 \times 10^8}{2 \pi N 1.43 \times 10 ^{-2}}$ if there are N fuel rods, each with 1-cm radius and 2.93 meters tall. For this preliminary analysis, we will assume 3750 rods, which is approximately one-twentieth the typical value for a 1GWe BWR. It then follows that the heat flux from such a system is 44.5 w/cm2
 
 \subsubsection{Materials analysis}
 \subsubsection{Alternatives}
