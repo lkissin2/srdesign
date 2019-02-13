@@ -47,6 +47,20 @@
 \MakeUppercase{J.~R. Russell}, \enquote{Holtec International Response to the
   DOE RFI,}  (2017).
 
+\bibitem{heuser_burnup}
+\MakeUppercase{B.~Heuser}, \enquote{Nuclear Fuel Burnup Units,}  (2018).
+
+\bibitem{ragheb_code}
+\MakeUppercase{M.~Ragheb}, \enquote{Multiregion One-dimensional One-group
+  Diffusion Theory Criticality Code,}  (2007).
+
+\bibitem{ragheb_pres}
+\MakeUppercase{M.~Singh} and \MakeUppercase{M.~Ragheb}, \enquote{Fail-Safe
+  Source Driven Thorium Reactors,}  (2013).
+
+\bibitem{cyl_derivation}
+\MakeUppercase{M.~Ragheb}, \enquote{One Group Reactor Theory,}  (2015).
+
 \bibitem{jaea}
 \MakeUppercase{JAEA}, \enquote{Japan Atomic Energy Agency Nuclear Data Center,}
    (2018).
