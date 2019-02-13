@@ -134,7 +134,16 @@ q'' &= \dot{m} c_p \Delta T \\
 \dot{m} &= \frac{q''}{c_p \Delta T}
 \end{align}
 
-We can estimate q'' by dividing the thermal power by the surface area of the fuel, which gives us $q'' = \frac{1.5 \times 10^8}{2 \pi N 1.43 \times 10 ^{-2}}$ if there are N fuel rods, each with 1-cm radius and 2.93 meters tall. For this preliminary analysis, we will assume 3750 rods, which is approximately one-twentieth the typical value for a 1GWe BWR. It then follows that the heat flux from such a system is 44.5 w/cm2
+We can estimate q'' by dividing the thermal power by the surface area of the fuel, which gives us $q'' = \frac{1.5 \times 10^8}{2 \pi N 1.43 \times 10 ^{-2}}$ if there are N fuel rods, each with 1-cm radius and 1.43 meters tall. For this preliminary analysis, \textbf{we will assume 100 rods}. It then follows that the heat flux from such a system is $1.67 \times 10^7 \frac{w}{cm^2}$. 
+
+Our coolant, Lead-Bismuth Eutectic, is liquid between approximately 200-1670 Degrees C. Conservatively, the $\Delta T$ may then approach 1,000 Kelvin. The isobaric heat capacity of this fluid in this temperature range is approximately $130 \frac{J}{kg K}$ \cite{LBE_properties}. The Mass flow rate needed is therefore:
+
+\begin{align}
+\dot{m} &= \frac{q''}{c_p \Delta T} \\
+ &= \frac{1.67 \times 10^7 \frac{w}{cm^2}}{130 \frac{J}{kg K} \times 1000} = 131 \frac{kg}{s}
+\end{align} 
+
+Dividing this flow rate by the density of LBE gives an approximate mass flow rate of 0.015 $\frac{m^3}{s}$.
 
 \subsubsection{Materials analysis}
 \subsubsection{Alternatives}

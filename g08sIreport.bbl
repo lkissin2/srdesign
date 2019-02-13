@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \newcommand{\enquote}[1]{``#1''}
 
 \bibitem{alekseev}
@@ -50,5 +50,10 @@
 \bibitem{jaea}
 \MakeUppercase{JAEA}, \enquote{Japan Atomic Energy Agency Nuclear Data Center,}
    (2018).
+
+\bibitem{LBE_properties}
+\MakeUppercase{OECD}, \enquote{Handbook on Lead-Bismuth Eutectic Alloy and Lead
+  Properties, Materials Compatibility, Thermal Hydraulics, and Technologies,}
+  (2015).
 
 \end{thebibliography}
