@@ -29,13 +29,16 @@ power_electric = power_options[0] * 10**6 #watts
 power_thermal = power_electric / efficiency
 print(power_options)
 # print(power_electric)
+
 lifetime_options = np.linspace(1, 10, 10) #years
 years = 2
 lifetime = lifetime_options[years - 1] * 3.15 * 10 ** 7 #seconds 
 print(lifetime_options)
 print(lifetime)
+
 # print(power_options)
 # print(power_electric)
+
 energy = power_thermal * lifetime # joules
 print(energy)
 
@@ -90,30 +93,42 @@ def rad_out(wout):
 	macroscopic_transport_cross_section =  density_uo2 * (n_u5_per_g_uo2_out * 1000 * sigma_t_235*10**-28 + n_u_8_per_g_uo2_out * 1000 * sigma_t_238*10**-28)
 	diffusion_coefficient = 1 / 3 / macroscopic_transport_cross_section
 	buckling = (nu_macroscopic_fission_cross_section - macroscopic_absorption_cross_section) / diffusion_coefficient 
-	print('w = ' + str(wout))
-	print('b= ' + str(buckling))
+	# print('w = ' + str(wout))
+	# print('b= ' + str(buckling))
 	outer_radius = ( (2.405**2 + m.pi**2) / buckling ) ** (1/2) 
 	# outer_vol = m.pi*(outer_radius**3)
 	# return outer_vol
 	return outer_radius
 
 def pow_out(wout, E, P): #wants percent, joules, and watts
-	# wout /= 100
+	wout /= 100
 	P *= 10 ** 6
 	E *= 10 ** 6
-	R = rad_out(wout)
+	R = rad_out(wout*100)
 	rin = vol_in(E)[1]
-	macroscopic_fission_cross_section_in = density_uo2 * (n_u5_per_g_uo2 * 1000 * sigma_f_235*10**-28 + n_u_8_per_g_uo2 * 1000 * sigma_f_238*10**-28)
-	energy_per_fission = 200 * 1.6 * 10 ** -19 #joules
+	macroscopic_fission_cross_section_in = density_uo2 * (n_u5_per_g_uo2 * 1000 * sigma_f_235 * 10**-28 + n_u_8_per_g_uo2 * 1000 * sigma_f_238*10**-28)
+	print('macroscopic_fission_cross_section_in ' + str(macroscopic_fission_cross_section_in))
+	energy_per_fission = 200 * 1.6 * 10 ** -13 #joules
 	phi_0 = P / vol_in(E)[0] / macroscopic_fission_cross_section_in / energy_per_fission
+	print(phi_0)
 	m_u_per_m_uo2_out = (238 * (1 - wout) + 235 * wout) / (238 * (1 - wout) + 235 * wout + 32)
+	print('m_u_per_m_uo2_out ' + str(m_u_per_m_uo2_out))
 	n_u5_per_g_uo2_out = wout * m_u_per_m_uo2_out * avogadro / 235
+	print('n_u5_per_g_uo2_out ' + str(n_u5_per_g_uo2_out))
 	n_u_8_per_g_uo2_out = (1 - wout) * m_u_per_m_uo2_out * avogadro / 238
+	print('n_u_8_per_g_uo2_out ' + str(n_u_8_per_g_uo2_out))
 	# Sigma_f_out = density_uo2 * n_u5_per_g_uo2_out * 1000 * sigma_f_235*10**-28
-	macroscopic_fission_cross_section_out = density_uo2 * (n_u5_per_g_uo2_out * 1000 * sigma_f_235*10**-28 + n_u_8_per_g_uo2_out * 1000 * sigma_f_238*10**-28)
-	power = 2* m.pi * energy_per_fission * macroscopic_fission_cross_section_out * integrate.quad(lambda r: special.jv(0, r * 2.405 / R), rin, R) * integrate.quad(lambda z: math.cos(z * math.pi / R), 0, R)
+	macroscopic_fission_cross_section_out = density_uo2 * (n_u5_per_g_uo2_out * sigma_f_235 * 1000 * 10**(-28) + n_u_8_per_g_uo2_out * 1000 * sigma_f_238*10**-28)
+	print('macroscopic_fission_cross_section_out ' +str(macroscopic_fission_cross_section_out))
+	int1 = integrate.quad(lambda r: r*special.jv(0, r * 2.405 / R), rin, R)[0]
+	print('int1 ' + str(int1))
+	int2 = integrate.quad(lambda z: m.sin(z * m.pi / R), 0, R)[0]
+	print('int2 ' + str(int2))
+	power = 2 * m.pi * energy_per_fission * phi_0 * macroscopic_fission_cross_section_out * integrate.quad(lambda r: r*special.jv(0, r * 2.405 / R), rin, R)[0] * integrate.quad(lambda z: m.sin(z * m.pi / R), 0, R)[0]
 	#something wrong with this function here????
 	return power
+
+print('power outer ' + str(pow_out(99.5, 35*3.15*10**7, 35)))
 
 
 #why is this numbers imaginary or very large? code is almost identical to the envelope code so what the heck
@@ -196,7 +211,7 @@ plt.show()
 # row = []
 tab = []
 
-# cooling rate tabulation
+print('cooling rate tabulation')
 
 for T in lifetime_options:
 	row = [T]
@@ -210,17 +225,23 @@ for T in lifetime_options:
 
 print(tabu(tab, tablefmt="github"))
 
-for T in lifetime_options:
-	row = [T]
-	T *= 3.15 * 10 ** 7 #seconds
-	for P in power_options: #years
-		P *= 10 ** 6 #watts
-		P /= efficiency #watts-thermal
-		E = P*T
-		outer_power = pow_out(19.5, E, P)
-		ratio = outer_power / P
-		outer_power /= (10**6)
-		row.append([outer_power, ratio])
-	tab.append(row)
+tab = []
 
-print(tabu(tab, tablefmt="github"))
+# print('inner outer power comparison')
+
+# for T in lifetime_options:
+# 	row = [T]
+# 	T *= 3.15 * 10 ** 7 #seconds
+# 	for P in power_options: #years
+# 		# P *= 10 ** 6 #watts
+# 		P /= efficiency #watts-thermal
+# 		E = P*T
+# 		outer_power = pow_out(19.5, E = E, P = P)
+# 		P *= 10**6
+# 		ratio = outer_power / P
+# 		outer_power /= (10**6)
+# 		# row.append([round(outer_power, 6), round(ratio, 6)])
+# 		row.append([outer_power, ratio])
+# 	tab.append(row)
+
+# print(tabu(tab, tablefmt="github"))
