@@ -3,3 +3,9 @@ this directory holding python scripts supporting my calculations
 envelope is for "back of the envelope calculations"
 
 evolved takes these calculations a bit further, generalizing them to different conditions
+
+rankine does steam cycle calculations
+
+safety does crit safety calculations
+
+necessary packages are tabulate and pyXsteam

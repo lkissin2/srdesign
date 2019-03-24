@@ -227,6 +227,8 @@ outer_power_axis = []
 ratio_axis = []
 inner_power_axis = []
 
+power_options = np.linspace(85, 850, 11) #options in megawatts
+
 for P in power_options: #years
 	T = 10*3.15*10**7
 	# P *= 10 ** 6 #watts
@@ -298,7 +300,30 @@ max_n = m.pi / 3 / m.sqrt(2) * outer_vol / pe_vol #  max number of pebbles
 
 k_axis = []
 n_axis = np.linspace(0, max_n, 1000)
+w_opt = np.linspace(19.5, 99.5, 11)
 # n_axis = np.flip(n_axis, 0)
+
+# power_options = np.linspace(35, 85, 11) #options in megawatts
+# lifet = 10
+# e_opts = power_options * lifet
+# wout = 99.5
+# # E = e_opts[-1]
+# tab = []
+#
+# for E in e_opts:
+# 	row = [E]
+# 	E *= 3.15*10**7
+# 	for n in n_axis: #years
+# 		row.append(k(wout, n, E))
+# 	tab.append(row)
+
+# for n in range(len(tab)):
+#     la = str(tab[n][0]) + 'MwY'
+#     plt.plot(n_axis * -1, tab[n][1:len(tab[n])+1], label=la)
+# plt.xlabel("Number of Pebbles")
+# plt.ylabel("Keff")
+# plt.legend()
+# plt.show()
 
 for n in n_axis:
 	# print('k = ' + str(k(wout, n, E)))
