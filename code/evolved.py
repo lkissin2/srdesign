@@ -68,7 +68,7 @@ def vol_in(E): #wants e in joules
 	fuel_rad = (fuel_vol / m.pi) ** (1/3) #m
 	return(fuel_vol, fuel_rad)
 
-print(vol_in(85*10**6*10*3.15*10**7))
+# print(vol_in(85*10**6*10*3.15*10**7))
 
 def mdot_in(E, P): #wants e, p in joules, watts
 	R = vol_in(E)[1]
@@ -84,6 +84,7 @@ def mdot_in(E, P): #wants e, p in joules, watts
 #outer core
 
 def rad_out(wout):
+	# density_uo2 = 10970
 	wout /= 100
 	m_u_per_m_uo2_out = (238 * (1 - wout) + 235 * wout) / (238 * (1 - wout) + 235 * wout + 32)
 	n_u5_per_g_uo2_out = wout * m_u_per_m_uo2_out * avogadro / 235
@@ -127,6 +128,7 @@ def pow_out(wout, E, P): #wants percent, mj, and mw
 	int1 = integrate.quad(lambda r: r*special.jv(0, (r-rin) * 2.405 / R), rin, rin+R)[0]
 	# print('int1 ' + str(int1))
 	int2 = integrate.quad(lambda z: m.sin(z * m.pi / R), 0, R)[0]
+	#  THIS IS PROBABLY WRONG IT IGNORES THE PART OF THE OUTER CORE THAT IS ON TOP OF THE INNER CORE
 	# print('int2 ' + str(int2))
 	power = 2 * m.pi * energy_per_fission * phi_0 * macroscopic_fission_cross_section_out * int1 * int2
 	#something wrong with this function here????
@@ -254,4 +256,80 @@ ax2.set_ylabel('Ratio', color='r')
 ax2.tick_params('y', colors='r')
 
 fig.tight_layout()
+plt.show()
+
+def k(wout, n, E): # n is number of pebbles, E is core energy in mj
+	density_uo2 = 10970 #kg/m3
+	wout /= 100
+	r_in = vol_in(E*10**6)[1]
+	r_out = rad_out(wout*100)
+	# outer_vol = m.pi * (r_out**2 - r_in**2) * (r_out - r_in)
+	outer_vol = m.pi * (r_out**2 - r_in**2) * r_in
+	# bg = m.sqrt((2.405**2 / r_out**2) + (m.pi**2 / r_in ** 2))
+	bg = m.sqrt((2.405**2 / r_out**2) + (m.pi**2 / r_out ** 2))
+	r_pe = 0.5 * 10 ** -2 #  Pebble radius
+	pe_vol = 4 / 3 * m.pi * r_pe ** 3
+	# outer_vol = pe_vol * 100000
+	max_n = m.pi / 3 / m.sqrt(2) * outer_vol / pe_vol #  max number of pebbles
+	# mass_pe = density_uo2 * pe_vol
+	density_uo2 *= n / max_n #  Updates the effective density of the fuel
+	m_u_per_m_uo2_out = (238 * (1 - wout) + 235 * wout) / (238 * (1 - wout) + 235 * wout + 32)
+	n_u5_per_g_uo2_out = wout * m_u_per_m_uo2_out * avogadro / 235
+	n_u_8_per_g_uo2_out = (1 - wout) * m_u_per_m_uo2_out * avogadro / 238
+	nu_sigf = density_uo2 * (n_u5_per_g_uo2_out * nu_sigma_f_235 * 1000 * 10**(-28) + n_u_8_per_g_uo2_out * 1000 * nu_sigma_f_238*10**-28)
+	siga = density_uo2 * (n_u5_per_g_uo2_out * sigma_a_235 * 1000 * 10**(-28) + n_u_8_per_g_uo2_out * 1000 * sigma_a_238*10**-28)
+	sigt = density_uo2 * (n_u5_per_g_uo2_out * sigma_t_235 * 1000 * 10**(-28) + n_u_8_per_g_uo2_out * 1000 * sigma_t_238*10**-28)
+	if sigt < 10**-7:
+		k = 0
+	else:
+		k = nu_sigf / (siga + 1/3/sigt * bg ** 2)
+	return k
+
+wout = 99.5
+E = 35*10*3.15*10**7
+r_in = vol_in(E*10**6)[1]
+r_out = rad_out(wout)
+# outer_vol = m.pi * (r_out**2 - r_in**2) * (r_out - r_in)
+outer_vol = m.pi * (r_out**2 - r_in**2) * r_in
+bg = m.sqrt((2.405**2 + m.pi**2) / (r_out ** 2))
+r_pe = 0.5 * 10 ** -2 #  Pebble radius
+pe_vol = 4 / 3 * m.pi * r_pe ** 3
+max_n = m.pi / 3 / m.sqrt(2) * outer_vol / pe_vol #  max number of pebbles
+
+k_axis = []
+n_axis = np.linspace(0, max_n, 1000)
+# n_axis = np.flip(n_axis, 0)
+
+for n in n_axis:
+	# print('k = ' + str(k(wout, n, E)))
+	k_axis.append(k(wout, n, E))
+
+n_axis *= -1
+plt.plot(n_axis, k_axis)
+plt.xlabel('number of pebbles')
+plt.ylabel('keff')
+plt.show()
+
+def n(H, n0, t):
+	n = n0 * (H - 9.81*t**2) / H
+	if n != 0:
+		n = n
+	else:
+		n = 0
+	return n
+
+t_axis = np.linspace(0, 0.3, 3601)
+n_axis = []
+k_axis = []
+
+i = -1
+for t in t_axis:
+	i += 1
+	n_axis.append(n(r_in, max_n, t))
+	k_axis.append(k(wout, n_axis[i], E))
+
+n_axis *= -1
+plt.plot(t_axis, k_axis)
+plt.xlabel('time [s]')
+plt.ylabel('keff')
 plt.show()
