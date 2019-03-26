@@ -1,0 +1,61 @@
+\begin{thebibliography}{10}
+\newcommand{\enquote}[1]{``#1''}
+
+\bibitem{ragheb_pres}
+\MakeUppercase{M.~Singh} and \MakeUppercase{M.~Ragheb}, \enquote{Fail-Safe
+  Source Driven Thorium Reactors,}  (2013).
+
+\bibitem{historic_ships}
+\MakeUppercase{K.~Steger-Jensen}, \enquote{Nuclear propulsion in ocean merchant
+  shipping: The role of historical experiments to gain insight into possible
+  future applications Thermal Hydraulics, and Technologies,}  (2016).
+
+\bibitem{ONPP}
+\MakeUppercase{K.-H. Lee}, \MakeUppercase{M.-G. Kim}, \MakeUppercase{J.~I.
+  Lee}, and \MakeUppercase{P.-S. Lee}, \enquote{Recent Advances in Ocean
+  Nuclear Power Plants,}  (2015).
+
+\bibitem{KLT}
+\MakeUppercase{I.~A. R.~I. System}, \enquote{KLT-40S,}  (2013).
+
+\bibitem{OFNP}
+\MakeUppercase{J.~M. Jurewicz}, \enquote{Design and Construction of an Offshore
+  Floating Nuclear Power Plant,}  (2015).
+
+\bibitem{ebr2}
+\MakeUppercase{S.~H. FISTEDIS}, \enquote{The Experimental Breeder Reactor-II
+  Inherent safety demonstration,}  (1987).
+
+\bibitem{Jacobs}
+\MakeUppercase{J.~Jacobs}, \enquote{Nuclear Short Sea Shipping: The integration
+  of a Helium cooled reactor in a 800 TEU Container Feeder,}  (2007).
+
+\bibitem{navy_exposure}
+\MakeUppercase{M.~Hareland}, \enquote{OCCUPATIONAL RADIATION EXPOSURE FROM U.S.
+  NAVAL NUCLEAR PLANTS AND THEIR SUPPORT FACILITIES,}  (2018).
+
+\bibitem{propul}
+\MakeUppercase{M.~D.~. Turbo}, \enquote{Propulsion Trends in Container
+  Vessels,}  (2013).
+
+\bibitem{wirtz}
+\MakeUppercase{K.~Wirtz}, \enquote{Lectures on Fast Reactors,}  (1973).
+
+\bibitem{LBE_properties}
+\MakeUppercase{OECD}, \enquote{Handbook on Lead-Bismuth Eutectic Alloy and Lead
+  Properties, Materials Compatibility, Thermal Hydraulics, and Technologies,}
+  (2015).
+
+\bibitem{iaea}
+\MakeUppercase{M.~Hussain}, \MakeUppercase{F.~Reitsma}, \MakeUppercase{M.~H.
+  Subki}, and \MakeUppercase{H.~Kiuchi}, \enquote{Advances in Small Modular
+  Reactor Technology Developments,}  (2018).
+
+\bibitem{Corrosion_LBE}
+\MakeUppercase{M.~Hareland}, \enquote{Conquer Corrosion: Key issues of the
+  lead-cooled fast reactor design,}  (2011).
+
+\bibitem{inherenty_safe}
+\MakeUppercase{M.~Ragheb}, \enquote{INHERENTLY SAFE REACTORS DESIGNS,}  (2015).
+
+\end{thebibliography}

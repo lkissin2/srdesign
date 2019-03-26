@@ -57,8 +57,8 @@ for power in turbine_powers:
         hfg_atm = hg_atm - hf_atm
 
         h4s = hf_atm + X4s * hfg_atm
-        # h4 = h3 - nT*(h3 - h4s)
-        h4 = h4s  # neglecting turbine inefficienct here
+        h4 = h3 - nT * (h3 - h4s)
+        # h4 = h4s  # neglecting turbine inefficienct here
 
         m_dot = power / (h3 - h4)  # kg/s
 
@@ -66,14 +66,15 @@ for power in turbine_powers:
 
         DeltaP = (P - atm) * 100000  # pa
 
-        pump_power = DeltaP * m_dot / rho
-        #  pump_power = DeltaP * m_dot / rho / nP
+        # pump_power = DeltaP * m_dot / rho
+        pump_power = DeltaP * m_dot / rho / nP
         pump_power *= 10 ** -3  # kpa
         pump_powers.append(pump_power)
 
         s1 = steamTable.s_pt(atm, T)
         h1 = steamTable.h_pt(atm, T)
-        h2 = steamTable.h_ps(P, s1)
+        h2 = h1 + pump_power / m_dot * nP
+        # h2 = steamTable.h_ps(P, s1)
 
         Q_core = m_dot*(h3-h2) * 10 ** -3  # mw
         core_heats.append(Q_core)
@@ -132,7 +133,8 @@ plt.show()
 
 for n in range(len(efficiency_tab)):
     la = str(efficiency_tab[n][0]) + 'MWe'
-    plt.plot(pressures, efficiency_tab[n][1:len(efficiency_tab[n])+1], label=la)
+    plt.plot(pressures, efficiency_tab[n][1:len(efficiency_tab[n])+1],
+             label=la)
     # plt.plot(pressures, efficiency_tab[n][1:len(efficiency_tab[n])+1])
 plt.xlabel("High Pressure [Bar]")
 plt.ylabel("Wt/Qc")

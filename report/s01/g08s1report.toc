@@ -1,0 +1,30 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
+\contentsline {section}{\numberline {2}Conceptual Design}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Naval concept}{4}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Nuclear Merchant Shipping Vessels}{4}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Floating Nuclear Power Plants}{6}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}Reactor concept}{12}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Driven Reactor}{12}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Alternatives}{14}{subsubsection.2.2.2}
+\contentsline {section}{\numberline {3}Feasibility analysis}{14}{section.3}
+\contentsline {subsection}{\numberline {3.1}Ship analysis}{14}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Safety}{14}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Propulsion}{18}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Reactor analysis}{22}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Inner core fuel parameters}{22}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Outer core fuel parameters}{24}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Thermal analysis}{25}{subsubsection.3.2.3}
+\contentsline {subsection}{\numberline {3.3}Materials analysis}{26}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Coolant}{26}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Fuel}{30}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}Shielding}{32}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}Corrosion}{33}{subsubsection.3.3.4}
+\contentsline {section}{\numberline {4}Market analysis}{35}{section.4}
+\contentsline {section}{\numberline {5}Process planning}{35}{section.5}
+\contentsline {subsection}{\numberline {5.1}SWOT analysis}{36}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Fishikawa}{37}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}GANTT chart}{37}{subsection.5.3}
+\contentsline {section}{\numberline {6}Constraints}{38}{section.6}
+\contentsline {section}{\numberline {7}Conclusions}{38}{section.7}
+\contentsline {section}{\numberline {8}Acknowledgements}{39}{section.8}
+\contentsline {section}{\numberline {9}References}{39}{section.9}
